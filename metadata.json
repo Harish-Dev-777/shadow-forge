@@ -1,5 +1,7 @@
 {
   "name": "Lumina AI Agency",
   "description": "A premium, high-conversion AI Web Design Agency website featuring GSAP animations, cinematic UI, and mad-libs style contact forms.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [
+    "microphone"
+  ]
 }

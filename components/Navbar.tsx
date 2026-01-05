@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
         {/* CTA */}
         <div className="hidden md:flex items-center gap-4">
           <a 
-            href="#contact"
+            href="tel:+919025946625"
             className="bg-black text-white px-6 py-2.5 text-sm font-semibold rounded-full hover:bg-neutral-800 transition-all active:scale-95 shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center gap-2"
           >
             Book a Demo Call
@@ -83,7 +83,7 @@ const Navbar: React.FC = () => {
           ))}
           <div className="h-px bg-neutral-100 my-2"></div>
            <a 
-            href="#contact"
+            href="tel:+919025946625"
             onClick={() => setMobileMenuOpen(false)}
             className="w-full bg-black text-white py-3 rounded-lg font-semibold text-center flex items-center justify-center gap-2"
            >

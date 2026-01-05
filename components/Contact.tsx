@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowRight, ChevronDown, Check } from 'lucide-react';
+import { ArrowRight, ChevronDown, Check, Sparkles } from 'lucide-react';
 
 const services = [
   "Landing page",
@@ -32,6 +32,30 @@ const Contact: React.FC = () => {
   return (
     <section className="py-32 bg-white" id="contact">
       <div className="max-w-5xl mx-auto px-6">
+        
+        {/* AI Assistant Banner */}
+        <div className="mb-16 p-8 rounded-3xl bg-neutral-900 text-white relative overflow-hidden shadow-2xl">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-4">
+                         <div className="bg-white/20 p-2 rounded-lg backdrop-blur-md">
+                            <Sparkles size={20} className="text-purple-300" />
+                         </div>
+                         <span className="text-sm font-bold tracking-wider uppercase text-purple-200">New AI Assistant</span>
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold mb-3">Chat with Jessica</h3>
+                    <p className="text-neutral-300 leading-relaxed max-w-xl">
+                        Skip the form? Use our AI assistant to <strong>schedule appointments</strong>, <strong>book sessions</strong>, and get instant answers about our <strong>pricing</strong> and <strong>services</strong>.
+                    </p>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"></div>
+                    <span className="text-xs font-mono text-green-400">ONLINE NOW</span>
+                </div>
+            </div>
+        </div>
+
         <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-neutral-900 mb-16 leading-tight">
           Hey! We are <span className="text-neutral-300">ready</span> <br />
           to <span className="text-indigo-200">consult you_</span>
@@ -91,7 +115,7 @@ const Contact: React.FC = () => {
             <div className="flex flex-wrap items-center gap-4 text-2xl md:text-4xl font-light text-neutral-900">
                 <span>My project budget</span>
                 <div className="flex flex-wrap gap-2 text-sm md:text-base">
-                    {['$1-5k', '$5-10k', '$10-20k', '$20-50k', '>50k'].map((budget) => (
+                    {['₹2k-3k', '₹3k-5k', '₹5k-10k', '₹10k-15k', '₹15k-20k', '>₹20k'].map((budget) => (
                         <label key={budget} className="cursor-pointer">
                             <input type="radio" name="budget" className="peer hidden" />
                             <span className="px-6 py-2 rounded-full border border-neutral-200 peer-checked:bg-black peer-checked:text-white hover:border-black transition-all">
@@ -113,7 +137,7 @@ const Contact: React.FC = () => {
                 <span>and my mobile number is</span>
                 <input 
                     type="tel" 
-                    placeholder="+1 (555) 000-0000" 
+                    placeholder="+91 98765 43210" 
                     className="bg-transparent border-b border-neutral-300 focus:border-black outline-none placeholder:text-neutral-300 min-w-[280px] md:min-w-[300px] pb-2 transition-colors"
                 />
                 <span>.</span>

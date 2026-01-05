@@ -65,9 +65,9 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                     </p>
                     
                     <div className="anim-text">
-                        <button className="bg-black text-white px-8 py-4 rounded-xl font-semibold hover:bg-neutral-800 transition-all">
+                        <a href="tel:+919025946625" className="inline-block bg-black text-white px-8 py-4 rounded-xl font-semibold hover:bg-neutral-800 transition-all">
                             Start a Project
-                        </button>
+                        </a>
                     </div>
                 </div>
                 

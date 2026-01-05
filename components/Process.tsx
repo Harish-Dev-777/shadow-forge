@@ -78,9 +78,9 @@ const Process: React.FC = () => {
                     A streamlined workflow designed to move fast without breaking things. From chaos to clarity in four steps.
                 </p>
                 <div className="hidden lg:block">
-                     <button className="px-8 py-3 bg-neutral-900 text-white rounded-full font-semibold hover:bg-black transition-all hover:scale-105 active:scale-95">
+                     <a href="#contact" className="inline-block px-8 py-3 bg-neutral-900 text-white rounded-full font-semibold hover:bg-black transition-all hover:scale-105 active:scale-95">
                         Start Your Project
-                     </button>
+                     </a>
                 </div>
             </div>
 
