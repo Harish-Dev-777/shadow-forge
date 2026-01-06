@@ -5,63 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shadow Forge - AI Web Design Agency</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
     <style>
       body {
-        font-family: 'Inter', sans-serif;
+        font-family: "Inter", sans-serif;
         background-color: #ffffff;
         color: #0a0a0a;
         overflow-x: hidden;
       }
-      h1, h2, h3, h4, h5, h6 {
-        font-family: 'Manrope', sans-serif;
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Manrope", sans-serif;
       }
-      
+
       /* Globally hide scrollbar */
       ::-webkit-scrollbar {
-          display: none;
+        display: none;
       }
-      
+
       /* Hide scrollbar for IE, Edge and Firefox */
       html {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
-          scroll-behavior: smooth;
-          scroll-padding-top: 100px; /* Offset for fixed navbar */
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+        scroll-behavior: smooth;
+        scroll-padding-top: 100px; /* Offset for fixed navbar */
       }
 
       /* Utility class (kept for compatibility) */
       .no-scrollbar::-webkit-scrollbar {
-          display: none;
+        display: none;
       }
       .no-scrollbar {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
       }
-      
+
       ::selection {
         background-color: #000;
         color: #fff;
       }
+
+      /* ElevenLabs Widget Mobile Responsive Styling */
+      elevenlabs-convai {
+        position: fixed !important;
+        z-index: 9999 !important;
+      }
+
+      /* Desktop positioning */
+      @media (min-width: 768px) {
+        elevenlabs-convai {
+          bottom: 24px !important;
+          right: 24px !important;
+        }
+      }
+
+      /* Mobile positioning - smaller and lower to avoid navbar */
+      @media (max-width: 767px) {
+        elevenlabs-convai {
+          bottom: 16px !important;
+          right: 16px !important;
+          transform: scale(0.9) !important;
+          transform-origin: bottom right !important;
+        }
+      }
+
+      /* Extra small screens */
+      @media (max-width: 480px) {
+        elevenlabs-convai {
+          bottom: 12px !important;
+          right: 12px !important;
+          transform: scale(0.85) !important;
+        }
+      }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-    "gsap/": "https://esm.sh/gsap@^3.14.2/",
-    "gsap": "https://esm.sh/gsap@^3.14.2"
-  }
-}
-</script>
-</head>
+    <script type="importmap">
+      {
+        "imports": {
+          "react/": "https://esm.sh/react@^19.2.3/",
+          "react": "https://esm.sh/react@^19.2.3",
+          "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+          "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+          "gsap/": "https://esm.sh/gsap@^3.14.2/",
+          "gsap": "https://esm.sh/gsap@^3.14.2"
+        }
+      }
+    </script>
+    <!-- Favicon (using data URI to prevent 404) -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>"
+    />
+  </head>
   <body>
     <div id="root"></div>
-    <elevenlabs-convai agent-id="agent_1901ke6amr4bfn9b36pzptb1def3" branch-id="agtbrch_8101ke6amss9f489pdg34mrn08g7"></elevenlabs-convai>
-    <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+    <elevenlabs-convai
+      agent-id="agent_3801ke90s3zpfmdbeknqjfb6nahe"
+      branch-id="agtbrch_2901ke90s4xqegf9abk8k2v19z13"
+    ></elevenlabs-convai>
+    <script
+      src="https://unpkg.com/@elevenlabs/convai-widget-embed"
+      async
+      type="text/javascript"
+    ></script>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>

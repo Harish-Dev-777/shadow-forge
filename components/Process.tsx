@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
@@ -71,14 +72,14 @@ const Process: React.FC = () => {
           {/* Sticky Left Column */}
           <div className="lg:w-1/3 lg:h-[calc(100vh-200px)] lg:sticky lg:top-32 flex flex-col justify-between">
             <div>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 mb-8">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8">
                 Our Proven <br/> Creative Process
                 </h2>
                 <p className="text-neutral-500 text-lg leading-relaxed mb-12 max-w-sm">
                     A streamlined workflow designed to move fast without breaking things. From chaos to clarity in four steps.
                 </p>
                 <div className="hidden lg:block">
-                     <a href="#contact" className="inline-block px-8 py-3 bg-neutral-900 text-white rounded-full font-semibold hover:bg-black transition-all hover:scale-105 active:scale-95">
+                     <a href="#contact" className="inline-block px-8 mb-5 py-3 bg-neutral-900 text-white rounded-full font-semibold hover:bg-black transition-all hover:scale-105 active:scale-95">
                         Start Your Project
                      </a>
                 </div>
