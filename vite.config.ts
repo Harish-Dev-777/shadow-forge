@@ -10,6 +10,9 @@ export default defineConfig(({ mode }) => {
       host: "0.0.0.0",
     },
     plugins: [react()],
+    esbuild: {
+      drop: ["console", "debugger"],
+    },
     define: {
       "process.env.API_KEY": JSON.stringify(env.GEMINI_API_KEY),
       "process.env.GEMINI_API_KEY": JSON.stringify(env.GEMINI_API_KEY),
@@ -22,13 +25,7 @@ export default defineConfig(({ mode }) => {
     build: {
       // Production optimizations
       target: "es2015",
-      minify: "terser",
-      terserOptions: {
-        compress: {
-          drop_console: true, // Remove console.log in production
-          drop_debugger: true,
-        },
-      },
+      minify: "esbuild",
       rollupOptions: {
         output: {
           // Manual chunk splitting for better caching
