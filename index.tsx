@@ -1,8 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
 
-const rootElement = document.getElementById('root');
+import { ConvexProvider, ConvexReactClient } from "convex/react";
+
+// You will need to make sure import.meta.env.VITE_CONVEX_URL is set in your .env.local file
+const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
+
+const rootElement = document.getElementById("root");
 if (!rootElement) {
   throw new Error("Could not find root element to mount to");
 }
@@ -10,6 +15,8 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <App />
+    <ConvexProvider client={convex}>
+      <App />
+    </ConvexProvider>
   </React.StrictMode>
 );

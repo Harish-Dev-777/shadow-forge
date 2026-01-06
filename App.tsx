@@ -24,7 +24,15 @@ export interface ServiceData {
   description: string;
   iconColor: string;
   iconBg: string;
-  iconType: "monitor" | "layout" | "fingerprint" | "zap";
+  iconType:
+    | "monitor"
+    | "layout"
+    | "fingerprint"
+    | "zap"
+    | "trending-up"
+    | "settings"
+    | "bot"
+    | "plug";
   fullContent: {
     heroImage: string;
     longDescription: string;
