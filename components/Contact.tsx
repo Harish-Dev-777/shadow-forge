@@ -218,40 +218,48 @@ const Contact: React.FC = () => {
         <div className="fixed top-4 md:top-8 left-0 w-full z-[100] flex justify-center px-4 md:px-6 pointer-events-none">
           <div
             ref={successRef}
-            className="pointer-events-auto bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 border border-neutral-700/50 text-white px-6 md:px-8 py-5 md:py-6 rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.4)] backdrop-blur-2xl flex items-start md:items-center gap-4 max-w-md w-full relative overflow-hidden group"
+            className="pointer-events-auto bg-[#0a0a0a]/90 border border-white/10 text-white px-6 md:px-8 py-5 md:py-6 rounded-2xl shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] backdrop-blur-3xl flex items-center gap-5 max-w-md w-full relative overflow-hidden"
           >
-            {/* Animated gradient background */}
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            {/* Subtle light leak effect */}
+            <div className="absolute -top-10 -left-10 w-32 h-32 bg-white/5 rounded-full blur-[50px] pointer-events-none"></div>
 
-            {/* Shimmer effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+            {/* Bottom accent line */}
+            <div className="absolute bottom-0 left-0 h-[1px] w-full bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent"></div>
 
-            <div className="relative z-10 w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-indigo-500/30">
-              <PartyPopper className="text-white" size={28} />
+            {/* Icon */}
+            <div className="relative z-10 w-12 h-12 rounded-full bg-gradient-to-b from-neutral-800 to-neutral-900 border border-white/10 flex items-center justify-center shrink-0 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] group">
+              <div className="absolute inset-0 rounded-full bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <Check
+                className="text-emerald-500 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]"
+                size={22}
+                strokeWidth={3}
+              />
             </div>
 
+            {/* Content */}
             <div className="relative z-10 flex-1">
-              <h4 className="font-bold text-lg md:text-xl mb-1 tracking-tight bg-gradient-to-r from-white to-neutral-200 bg-clip-text text-transparent">
-                Message Sent! 🎉
+              <h4 className="font-medium text-base md:text-lg tracking-wide text-white mb-0.5">
+                Request Sent Successfully
               </h4>
-              <p className="text-neutral-300 text-sm md:text-base leading-snug">
-                We've received your request. Expect a reply soon!
+              <p className="text-neutral-500 text-sm font-light leading-snug">
+                Thank you. We will get back to you shortly.
               </p>
             </div>
 
+            {/* Close Button */}
             <button
               onClick={() => {
                 gsap.to(successRef.current, {
-                  y: -100,
+                  y: -20,
                   opacity: 0,
-                  scale: 0.9,
-                  duration: 0.3,
+                  filter: "blur(10px)",
+                  duration: 0.4,
                   onComplete: () => setShowSuccess(false),
                 });
               }}
-              className="relative z-10 w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-xl hover:bg-white/10 transition-all duration-300 text-neutral-400 hover:text-white hover:rotate-90 shrink-0"
+              className="relative z-10 w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/5 transition-all duration-300 text-neutral-500 hover:text-white shrink-0"
             >
-              <X size={20} />
+              <X size={18} />
             </button>
           </div>
         </div>
@@ -375,7 +383,7 @@ const Contact: React.FC = () => {
 
               {/* Dropdown Menu */}
               <div
-                className={`absolute left-0 top-full mt-4 w-full min-w-[320px] bg-white rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-neutral-100 overflow-hidden transition-all duration-300 origin-top z-50 ${
+                className={`absolute left-0 top-full mt-4 w-full min-w-[320px] bg-neutral-900 rounded-2xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.5)] border border-neutral-800 overflow-hidden transition-all duration-300 origin-top z-50 ${
                   isOpen
                     ? "opacity-100 scale-100 translate-y-0 visible"
                     : "opacity-0 scale-95 -translate-y-2 invisible pointer-events-none"
@@ -389,29 +397,29 @@ const Contact: React.FC = () => {
                         setSelectedService(service);
                         setIsOpen(false);
                       }}
-                      className="px-6 py-4 hover:bg-neutral-50 cursor-pointer flex items-center justify-between group transition-colors border-b border-neutral-50 last:border-0"
+                      className="px-6 py-4 hover:bg-neutral-800 cursor-pointer flex items-center justify-between group transition-colors border-b border-neutral-800 last:border-0"
                     >
                       <span
                         className={`text-lg font-medium transition-colors ${
                           selectedService === service
-                            ? "text-black"
-                            : "text-neutral-500 group-hover:text-neutral-900"
+                            ? "text-white"
+                            : "text-neutral-400 group-hover:text-white"
                         }`}
                       >
                         {service}
                       </span>
                       {selectedService === service && (
-                        <Check size={20} className="text-black" />
+                        <Check size={20} className="text-white" />
                       )}
                     </li>
                   ))}
                 </ul>
 
                 {/* Scroll Indicator */}
-                <div className="sticky bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white via-white/90 to-transparent pointer-events-none flex items-end justify-center pb-2">
+                <div className="sticky bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-neutral-900 via-neutral-900/90 to-transparent pointer-events-none flex items-end justify-center pb-2">
                   <div className="flex flex-col items-center gap-0.5 animate-bounce">
-                    <ChevronDown size={16} className="text-neutral-400" />
-                    <span className="text-xs text-neutral-400 font-medium">
+                    <ChevronDown size={16} className="text-neutral-500" />
+                    <span className="text-xs text-neutral-500 font-medium">
                       Scroll for more
                     </span>
                   </div>
@@ -466,9 +474,12 @@ const Contact: React.FC = () => {
                 required
               />
               {errors.email && (
-                <span className="absolute left-0 -bottom-6 text-xs text-red-500 font-medium whitespace-nowrap">
-                  {errors.email}
-                </span>
+                <div className="absolute left-0 top-full mt-2 z-10 flex items-center gap-2 bg-red-50 border border-red-100 px-3 py-1.5 rounded-lg shadow-sm">
+                  <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></div>
+                  <span className="text-xs text-red-600 font-medium whitespace-nowrap">
+                    {errors.email}
+                  </span>
+                </div>
               )}
             </span>
             <span> and my mobile number is </span>
@@ -492,9 +503,12 @@ const Contact: React.FC = () => {
                 required
               />
               {errors.phone && (
-                <span className="absolute left-0 -bottom-6 text-xs text-red-500 font-medium whitespace-nowrap">
-                  {errors.phone}
-                </span>
+                <div className="absolute left-0 top-full mt-2 z-10 flex items-center gap-2 bg-red-50 border border-red-100 px-3 py-1.5 rounded-lg shadow-sm">
+                  <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></div>
+                  <span className="text-xs text-red-600 font-medium whitespace-nowrap">
+                    {errors.phone}
+                  </span>
+                </div>
               )}
             </span>
             <span>. Optionally, I'm sharing more details: </span>
