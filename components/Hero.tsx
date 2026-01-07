@@ -126,6 +126,19 @@ const Hero: React.FC = () => {
         >
           <a
             href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              const contactSection = document.getElementById("contact");
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: "smooth" });
+                setTimeout(() => {
+                  const nameInput = document.getElementById("contact-name");
+                  if (nameInput) {
+                    nameInput.focus();
+                  }
+                }, 800);
+              }
+            }}
             className="w-full sm:w-[200px] h-[56px] bg-neutral-900 text-white rounded-xl font-semibold text-lg hover:bg-black transition-all hover:-translate-y-1 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
           >
             Contact Us

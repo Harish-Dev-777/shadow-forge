@@ -132,8 +132,13 @@ const FeaturedWork: React.FC = () => {
                     href={(project as any).link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-black hover:scale-110 transition-transform duration-300 z-20"
-                    onClick={(e) => e.stopPropagation()}
+                    className="w-14 h-14 bg-white rounded-full flex items-center justify-center text-black hover:scale-110 transition-transform duration-300 relative z-50 cursor-pointer pointer-events-auto"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                    onTouchEnd={(e) => {
+                      e.stopPropagation();
+                    }}
                   >
                     <ArrowUpRight size={24} />
                   </a>

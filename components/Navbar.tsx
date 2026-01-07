@@ -20,6 +20,21 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => {
+        const nameInput = document.getElementById("contact-name");
+        if (nameInput) {
+          nameInput.focus();
+        }
+      }, 800);
+    }
+    setMobileMenuOpen(false);
+  };
+
   // Handle Body Scroll Lock
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -155,7 +170,8 @@ const Navbar: React.FC = () => {
           {/* CTA & Hamburger */}
           <div className="flex items-center gap-4">
             <a
-              href="tel:+919025946625"
+              href="#contact"
+              onClick={handleContactClick}
               className={`hidden md:flex px-6 py-2.5 text-sm font-semibold rounded-full transition-all active:scale-95 shadow-lg hover:shadow-xl hover:-translate-y-0.5 items-center gap-2 ${
                 mobileMenuOpen
                   ? "bg-white text-black hover:bg-neutral-200"
@@ -227,9 +243,9 @@ const Navbar: React.FC = () => {
               </a>
             ))}
             <a
-              href="tel:+919025946625"
+              href="#contact"
               ref={addToLinksRef}
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={handleContactClick}
               className="text-2xl font-medium text-neutral-400 mt-8 flex items-center gap-4 opacity-0 translate-y-12 hover:text-white transition-colors"
             >
               Book a Demo Call <ArrowRight size={24} />
