@@ -59,6 +59,7 @@ export const sendContactForm = mutation({
     });
 
     // Send email
+
     await resend.sendEmail(ctx, {
       from: "Shadow Forge Contact <onboarding@resend.dev>",
       to: "harishmkdev@gmail.com",

@@ -58,6 +58,27 @@ const Contact: React.FC = () => {
     details: "",
   });
 
+  const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
+
+  const validateForm = () => {
+    const newErrors: { email?: string; phone?: string } = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^(\+\d{1,3}[- ]?)?\d{10}$/; // Basic validation for 10 digits, optional country code
+
+    if (!emailRegex.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+
+    // Cleaning phone number to just digits for check if desired, or use regex
+    // Allowing +91 space/dash and 10 digits, or just 10 digits
+    if (!phoneRegex.test(formData.phone.replace(/[\s-]/g, ""))) {
+      newErrors.phone = "Please enter a valid 10-digit phone number.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -152,6 +173,10 @@ const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isSubmitting) return;
+
+    if (!validateForm()) {
+      return;
+    }
 
     setIsSubmitting(true);
     const finalData = {
@@ -296,7 +321,7 @@ const Contact: React.FC = () => {
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, name: e.target.value }))
               }
-              className="bg-white border-b border-neutral-300 focus:border-black outline-none placeholder:text-neutral-300 min-w-[280px] md:min-w-[320px] pb-2 transition-colors"
+              className="bg-transparent border-b-2 border-neutral-200 focus:border-black outline-none placeholder:text-neutral-300 min-w-[280px] md:min-w-[320px] pb-1 transition-all duration-300 text-neutral-900 font-light placeholder:font-light"
               autoComplete="name"
               required
             />
@@ -312,7 +337,7 @@ const Contact: React.FC = () => {
                   businessName: e.target.value,
                 }))
               }
-              className="bg-white border-b border-neutral-300 focus:border-black outline-none placeholder:text-neutral-300 min-w-[280px] md:min-w-[320px] pb-2 transition-colors"
+              className="bg-transparent border-b-2 border-neutral-200 focus:border-black outline-none placeholder:text-neutral-300 min-w-[280px] md:min-w-[320px] pb-1 transition-all duration-300 text-neutral-900 font-light placeholder:font-light"
               autoComplete="organization"
             />
             <span className="text-sm text-neutral-400 italic"> (optional)</span>
@@ -421,31 +446,57 @@ const Contact: React.FC = () => {
               ))}
             </span>
             <span>. Please contact me at </span>
-            <input
-              id="contact-email"
-              type="email"
-              placeholder="name@example.com"
-              value={formData.email}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, email: e.target.value }))
-              }
-              className="bg-white border-b border-neutral-300 focus:border-black outline-none placeholder:text-neutral-300 min-w-[280px] md:min-w-[320px] pb-2 transition-colors"
-              autoComplete="email"
-              required
-            />
+            <span className="relative inline-block">
+              <input
+                id="contact-email"
+                type="email"
+                placeholder="name@example.com"
+                value={formData.email}
+                onChange={(e) => {
+                  setFormData((prev) => ({ ...prev, email: e.target.value }));
+                  if (errors.email)
+                    setErrors((prev) => ({ ...prev, email: undefined }));
+                }}
+                className={`bg-transparent border-b-2 ${
+                  errors.email
+                    ? "border-red-500 text-red-600"
+                    : "border-neutral-200 focus:border-black text-neutral-900"
+                } outline-none placeholder:text-neutral-300 min-w-[280px] md:min-w-[320px] pb-1 transition-all duration-300 font-light placeholder:font-light`}
+                autoComplete="email"
+                required
+              />
+              {errors.email && (
+                <span className="absolute left-0 -bottom-6 text-xs text-red-500 font-medium whitespace-nowrap">
+                  {errors.email}
+                </span>
+              )}
+            </span>
             <span> and my mobile number is </span>
-            <input
-              id="contact-phone"
-              type="tel"
-              placeholder="+91 98765 43210"
-              value={formData.phone}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, phone: e.target.value }))
-              }
-              className="bg-white border-b border-neutral-300 focus:border-black outline-none placeholder:text-neutral-300 min-w-[240px] md:min-w-[280px] pb-2 transition-colors"
-              autoComplete="tel"
-              required
-            />
+            <span className="relative inline-block">
+              <input
+                id="contact-phone"
+                type="tel"
+                placeholder="+91 98765 43210"
+                value={formData.phone}
+                onChange={(e) => {
+                  setFormData((prev) => ({ ...prev, phone: e.target.value }));
+                  if (errors.phone)
+                    setErrors((prev) => ({ ...prev, phone: undefined }));
+                }}
+                className={`bg-transparent border-b-2 ${
+                  errors.phone
+                    ? "border-red-500 text-red-600"
+                    : "border-neutral-200 focus:border-black text-neutral-900"
+                } outline-none placeholder:text-neutral-300 min-w-[240px] md:min-w-[280px] pb-1 transition-all duration-300 font-light placeholder:font-light`}
+                autoComplete="tel"
+                required
+              />
+              {errors.phone && (
+                <span className="absolute left-0 -bottom-6 text-xs text-red-500 font-medium whitespace-nowrap">
+                  {errors.phone}
+                </span>
+              )}
+            </span>
             <span>. Optionally, I'm sharing more details: </span>
             <input
               id="contact-details"
@@ -455,7 +506,7 @@ const Contact: React.FC = () => {
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, details: e.target.value }))
               }
-              className="bg-white border-b border-neutral-300 focus:border-black outline-none placeholder:text-neutral-300 min-w-[280px] md:min-w-[400px] pb-2 transition-colors"
+              className="bg-transparent border-b-2 border-neutral-200 focus:border-black outline-none placeholder:text-neutral-300 min-w-[280px] md:min-w-[400px] pb-1 transition-all duration-300 text-neutral-900 font-light placeholder:font-light"
             />
             <span>.</span>
           </div>
