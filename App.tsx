@@ -14,6 +14,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ServiceDetail from "./components/ServiceDetail";
 import ScrollToTop from "./components/ScrollToTop";
+import ChatAgent from "./components/ChatAgent";
 
 // Register GSAP Plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -42,7 +43,7 @@ export interface ServiceData {
 
 const App: React.FC = () => {
   const [selectedService, setSelectedService] = useState<ServiceData | null>(
-    null
+    null,
   );
   const [footerHeight, setFooterHeight] = useState(0);
 
@@ -104,6 +105,7 @@ const App: React.FC = () => {
         </main>
       </div>
       <Footer />
+      <ChatAgent />
       <ScrollToTop />
     </div>
   );

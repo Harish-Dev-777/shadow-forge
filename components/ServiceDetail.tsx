@@ -70,12 +70,23 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
             </p>
 
             <div className="anim-text">
-              <a
-                href="tel:+919025946625"
-                className="inline-block bg-black text-white px-8 py-4 rounded-xl font-semibold hover:bg-neutral-800 transition-all"
+              <button
+                onClick={() => {
+                  onBack();
+                  setTimeout(() => {
+                    const contactSection = document.getElementById("contact");
+                    if (contactSection) {
+                      contactSection.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
+                    }
+                  }, 100);
+                }}
+                className="inline-block bg-black text-white px-8 py-4 rounded-xl font-semibold hover:bg-neutral-800 transition-all cursor-pointer"
               >
                 Start a Project
-              </a>
+              </button>
             </div>
           </div>
 

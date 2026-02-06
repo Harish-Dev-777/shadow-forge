@@ -46,6 +46,17 @@ const projects = [
     image: "/assets/projects/Portfolio.png",
     link: "https://harish-portfolio-tawny.vercel.app/",
   },
+  {
+    id: "05",
+    title: "Trendly",
+    category: "E-commerce & AI",
+    description:
+      "A curated, premium e-commerce experience powered by intelligence to elevate lifestyle shopping.",
+    result: "📈 98% Happy Customers",
+    tags: ["E-commerce", "AI", "Premium"],
+    image: "/assets/projects/Trendly.png",
+    link: "https://trendly-ecommerce-one.vercel.app/",
+  },
 ];
 
 const FeaturedWork: React.FC = () => {
@@ -97,19 +108,19 @@ const FeaturedWork: React.FC = () => {
 
       {/* Projects Accordion */}
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row gap-4 h-auto md:h-[600px]">
+        <div className="flex flex-row gap-4 h-[600px]">
           {projects.map((project, index) => (
             <div
               key={project.id}
               onClick={() => setActiveIndex(index)}
               onMouseEnter={() => setActiveIndex(index)}
-              className={`relative overflow-hidden rounded-3xl transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer group
-                                ${activeIndex === index ? "md:flex-[3] h-[500px] md:h-auto" : "md:flex-[0.5] h-[100px] md:h-auto bg-neutral-900 border border-white/5"}
+              className={`relative overflow-hidden rounded-3xl transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer group h-full
+                                ${index === activeIndex ? "flex flex-[3]" : "hidden md:flex md:flex-[0.5] bg-neutral-900 border border-white/5"}
                             `}
             >
               {/* Background Image (Active Only) */}
               <div
-                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${activeIndex === index ? "opacity-100" : "opacity-20 md:opacity-0"}`}
+                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${activeIndex === index ? "opacity-100" : "opacity-0"}`}
               >
                 <img
                   src={project.image}
@@ -172,7 +183,7 @@ const FeaturedWork: React.FC = () => {
 
               {/* Inactive State: Vertical Text (Desktop) */}
               <div
-                className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${activeIndex === index ? "opacity-0 pointer-events-none" : "opacity-0 md:opacity-100"}`}
+                className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${activeIndex === index ? "opacity-0 pointer-events-none" : "opacity-100"}`}
               >
                 <h3 className="text-3xl font-bold text-neutral-600 whitespace-nowrap -rotate-90 tracking-widest uppercase group-hover:text-white transition-colors">
                   {project.title}
@@ -182,20 +193,7 @@ const FeaturedWork: React.FC = () => {
                 </span>
               </div>
 
-              {/* Inactive State: Horizontal Row (Mobile) */}
-              <div
-                className={`absolute inset-0 flex items-center justify-between px-8 md:hidden transition-opacity duration-300 ${activeIndex === index ? "opacity-0" : "opacity-100"}`}
-              >
-                <div className="flex items-center gap-6">
-                  <span className="text-3xl font-serif italic text-neutral-600">
-                    {project.id}
-                  </span>
-                  <h3 className="text-xl font-bold text-neutral-300">
-                    {project.title}
-                  </h3>
-                </div>
-                <ArrowUpRight className="text-neutral-600" />
-              </div>
+              {/* Inactive State: Horizontal Row (Mobile) - REMOVED */}
             </div>
           ))}
         </div>

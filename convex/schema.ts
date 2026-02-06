@@ -9,7 +9,7 @@ export default defineSchema({
   users: defineTable({
     name: v.string(),
     email: v.string(),
-    phone: v.string(),
+    phone: v.optional(v.string()),
     businessName: v.optional(v.string()),
     lastContactAt: v.number(),
   }).index("by_email", ["email"]),
@@ -17,10 +17,11 @@ export default defineSchema({
     name: v.string(),
     email: v.string(),
     service: v.string(),
-    budget: v.string(),
-    phone: v.string(),
+    budget: v.optional(v.string()),
+    phone: v.optional(v.string()),
     details: v.string(),
     businessName: v.optional(v.string()),
     userId: v.optional(v.id("users")),
+    timeline: v.optional(v.string()),
   }),
 });

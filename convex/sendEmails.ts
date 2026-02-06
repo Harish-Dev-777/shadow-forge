@@ -10,12 +10,13 @@ export const resend: Resend = new Resend((components as any).resend, {
 export const sendContactForm = mutation({
   args: {
     name: v.string(),
-    businessName: v.string(),
+    businessName: v.optional(v.string()),
     email: v.string(),
     service: v.string(),
-    budget: v.string(),
-    phone: v.string(),
+    budget: v.optional(v.string()),
+    phone: v.optional(v.string()),
     details: v.string(),
+    timeline: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     // 1. Check for existing user
@@ -56,6 +57,7 @@ export const sendContactForm = mutation({
       details: args.details,
       businessName: args.businessName || undefined,
       userId: userId,
+      timeline: args.timeline,
     });
 
     // Send email
@@ -70,10 +72,11 @@ New Project Inquiry from Shadow Forge
 
 Name: ${args.name}
 Email: ${args.email}
-Phone: ${args.phone}
+${args.phone ? `Phone: ${args.phone}` : ""}
 
 Service Interest: ${args.service}
-Budget Range: ${args.budget}
+${args.budget ? `Budget Range: ${args.budget}` : ""}
+${args.timeline ? `Timeline: ${args.timeline}` : ""}
 
 Project Details:
 ${args.details}
@@ -144,12 +147,18 @@ Reply directly to this email to contact ${args.name}.
                               <a href="mailto:${args.email}" style="display: block; color: #4f46e5; font-size: 18px; font-weight: 600; text-decoration: none;">${args.email}</a>
                             </td>
                           </tr>
+                          ${
+                            args.phone
+                              ? `
                           <tr>
                             <td style="padding: 12px 0;">
                               <span style="display: block; color: #666; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Phone</span>
                               <a href="tel:${args.phone}" style="display: block; color: #1a1a1a; font-size: 18px; font-weight: 600; text-decoration: none;">${args.phone}</a>
                             </td>
                           </tr>
+                          `
+                              : ""
+                          }
                         </table>
                       </div>
 
@@ -166,12 +175,30 @@ Reply directly to this email to contact ${args.name}.
                               <span style="display: inline-block; background: #4f46e5; color: #ffffff; font-size: 16px; font-weight: 600; padding: 8px 16px; border-radius: 8px;">${args.service}</span>
                             </td>
                           </tr>
+                          ${
+                            args.budget
+                              ? `
                           <tr>
                             <td style="padding: 10px 0;">
                               <span style="display: block; color: #666; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Budget Range</span>
                               <span style="display: inline-block; background: #10b981; color: #ffffff; font-size: 16px; font-weight: 600; padding: 8px 16px; border-radius: 8px;">${args.budget}</span>
                             </td>
                           </tr>
+                          `
+                              : ""
+                          }
+                          ${
+                            args.timeline
+                              ? `
+                          <tr>
+                            <td style="padding: 10px 0;">
+                              <span style="display: block; color: #666; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Timeline</span>
+                              <span style="display: inline-block; background: #f59e0b; color: #ffffff; font-size: 16px; font-weight: 600; padding: 8px 16px; border-radius: 8px;">${args.timeline}</span>
+                            </td>
+                          </tr>
+                          `
+                              : ""
+                          }
                         </table>
                       </div>
 

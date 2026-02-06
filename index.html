@@ -104,36 +104,16 @@
         color: #fff;
       }
 
-      /* ElevenLabs Widget Mobile Responsive Styling */
-      elevenlabs-convai {
-        position: fixed !important;
-        z-index: 9999 !important;
+      .animate-spin-slow {
+        animation: spin 3s linear infinite;
       }
 
-      /* Desktop positioning */
-      @media (min-width: 768px) {
-        elevenlabs-convai {
-          bottom: 24px !important;
-          right: 24px !important;
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
         }
-      }
-
-      /* Mobile positioning - smaller and lower to avoid navbar */
-      @media (max-width: 767px) {
-        elevenlabs-convai {
-          bottom: 16px !important;
-          right: 16px !important;
-          transform: scale(0.9) !important;
-          transform-origin: bottom right !important;
-        }
-      }
-
-      /* Extra small screens */
-      @media (max-width: 480px) {
-        elevenlabs-convai {
-          bottom: 12px !important;
-          right: 12px !important;
-          transform: scale(0.85) !important;
+        to {
+          transform: rotate(360deg);
         }
       }
     </style>
@@ -158,15 +138,6 @@
   </head>
   <body>
     <div id="root"></div>
-    <elevenlabs-convai
-      agent-id="agent_3801ke90s3zpfmdbeknqjfb6nahe"
-      branch-id="agtbrch_2901ke90s4xqegf9abk8k2v19z13"
-    ></elevenlabs-convai>
-    <script
-      src="https://unpkg.com/@elevenlabs/convai-widget-embed"
-      async
-      type="text/javascript"
-    ></script>
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>
