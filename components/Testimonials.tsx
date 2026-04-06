@@ -69,19 +69,34 @@ const Testimonials: React.FC = () => {
       // Scroll by one card width roughly on desktop (400px + gap) or full width on mobile
       const scrollAmount = current.clientWidth < 768 ? current.clientWidth : 450;
       
-      const newScrollLeft = direction === 'left' 
-        ? current.scrollLeft - scrollAmount 
-        : current.scrollLeft + scrollAmount;
-      
-      current.scrollTo({
-        left: newScrollLeft,
-        behavior: 'smooth'
-      });
+      if (direction === 'right') {
+        if (current.scrollLeft + current.clientWidth >= current.scrollWidth - 10) {
+          // Reached the end, loop back
+          current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          current.scrollTo({ left: current.scrollLeft + scrollAmount, behavior: 'smooth' });
+        }
+      } else {
+        if (current.scrollLeft <= 0) {
+          // At the start, loop to the end
+          current.scrollTo({ left: current.scrollWidth, behavior: 'smooth' });
+        } else {
+          current.scrollTo({ left: current.scrollLeft - scrollAmount, behavior: 'smooth' });
+        }
+      }
     }
   };
 
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      scroll('right');
+    }, 4000); // Move every 4 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section className="py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-end mb-16">
             <div>

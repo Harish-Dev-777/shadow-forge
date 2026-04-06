@@ -203,9 +203,42 @@ const ChatAgent: React.FC = () => {
     setCurrentField("name");
   };
 
+  const validateInput = (field: keyof LeadData, value: string): string | null => {
+    if (!value.trim()) return "Please provide a valid answer.";
+    
+    if (field === "email") {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        return "That doesn't look like a valid email address. Could you double-check and provide a proper email?";
+      }
+    }
+    
+    if (field === "phone") {
+      // Basic phone regex (allows numbers, +, -, spaces, parenthesis - at least 7-15 digits)
+      const phoneRegex = /^[\d\s()+-]{7,20}$/;
+      // We'll also let them type "skip" or "no" if they really refuse
+      if (!phoneRegex.test(value) && !["skip", "no", "none"].includes(value.toLowerCase().trim())) {
+        return "That doesn't look like a valid phone number. Please enter a valid number, or type 'skip' if you prefer not to share it.";
+      }
+    }
+
+    if (field === "name" && value.trim().length < 2) {
+      return "Please enter your proper name.";
+    }
+
+    return null; // Valid
+  };
+
   const handleBookingInput = (text: string) => {
     // Save data for current field
     if (!currentField) return;
+
+    // Reject bad data without advancing
+    const errorMessage = validateInput(currentField, text);
+    if (errorMessage) {
+      addAgentMessage(errorMessage);
+      return;
+    }
 
     const newData = { ...data, [currentField]: text };
     setData(newData);
@@ -274,9 +307,17 @@ const ChatAgent: React.FC = () => {
         timeline: finalData.timeline,
       });
       addAgentMessage(
-        "Done! Your inquiry has been sent. I've also sent a confirmation to your email.",
+        "Finally your inquiry has been sent, thank you like that and have a great day.",
       );
-      addAgentMessage("Is there anything else I can help you with?");
+      
+      // Auto close the chat widget after a brief delay so the user has time to read the message
+      setTimeout(() => {
+        setIsOpen(false);
+        // Reset the data for next time
+        setData({
+          name: "", business_name: "", service: "", budget: "", timeline: "", phone: "", email: "", details: ""
+        });
+      }, 5000);
     } catch (e) {
       console.error(e);
       addAgentMessage(
@@ -287,7 +328,7 @@ const ChatAgent: React.FC = () => {
 
   return (
     <>
-      <div className="fixed bottom-6 right-6 z-[100] font-sans flex flex-col items-end gap-4">
+      <div className="fixed bottom-16 right-6 z-[100] font-sans flex flex-col items-end gap-4">
         <AnimatePresence>
           {isOpen && (
             <motion.div

@@ -61,7 +61,7 @@ const ValueProposition: React.FC = () => {
   }, []);
 
   return (
-    <section id="about" ref={containerRef} className="py-32 bg-white relative overflow-hidden">
+    <section id="about" ref={containerRef} className="py-32 relative overflow-hidden">
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
         

@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
-import { Box, ArrowRight } from "lucide-react";
+import { Box, ArrowRight, Phone } from "lucide-react";
 
 const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -12,18 +12,27 @@ const Hero: React.FC = () => {
 
   // Using reliable vector sources
   const logoUrls = [
+    "/assets/icons/convex.png",
+    "/assets/icons/gemini.png",
+    "/assets/icons/claude.png",
+    "/assets/icons/aistudio.png",
+    "/assets/icons/supabase.png",
+    "/assets/icons/notion.png",
+    "/assets/icons/shadecn.png",
     "https://www.vectorlogo.zone/logos/w3_html5/w3_html5-icon.svg",
     "https://www.vectorlogo.zone/logos/w3_css/w3_css-icon.svg",
-    "https://www.vectorlogo.zone/logos/javascript/javascript-icon.svg",
     "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
-    "https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg",
+    "https://www.vectorlogo.zone/logos/javascript/javascript-icon.svg",
     "https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-icon.svg",
+    "https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg",
     "https://www.vectorlogo.zone/logos/nextjs/nextjs-icon.svg",
     "https://www.vectorlogo.zone/logos/java/java-icon.svg",
     "https://www.vectorlogo.zone/logos/springio/springio-icon.svg",
     "https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg",
     "https://www.vectorlogo.zone/logos/expressjs/expressjs-icon.svg",
+    "/assets/icons/nestjs.png",
     "https://www.vectorlogo.zone/logos/mongodb/mongodb-icon.svg",
+    "/assets/icons/postgresql.png",
     "https://www.vectorlogo.zone/logos/figma/figma-icon.svg",
   ];
 
@@ -122,8 +131,15 @@ const Hero: React.FC = () => {
         {/* CTA Buttons */}
         <div
           ref={ctaRef}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md sm:max-w-none mx-auto"
+          className="flex flex-col md:flex-row items-center justify-center gap-6 w-full max-w-lg md:max-w-none mx-auto scale-90 md:scale-100"
         >
+          <a
+            href="tel:+919025946625"
+            className="w-full md:w-[220px] h-[60px] bg-black text-white rounded-xl font-bold text-lg hover:bg-neutral-800 transition-all hover:-translate-y-1 shadow-2xl flex items-center justify-center gap-3 group"
+          >
+            <Phone size={22} className="group-hover:animate-shake" />
+            Talk to Expert
+          </a>
           <a
             href="#contact"
             onClick={(e) => {
@@ -139,19 +155,9 @@ const Hero: React.FC = () => {
                 }, 800);
               }
             }}
-            className="w-full sm:w-[200px] h-[56px] bg-neutral-900 text-white rounded-xl font-semibold text-lg hover:bg-black transition-all hover:-translate-y-1 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+            className="w-full md:w-[220px] h-[60px] bg-white text-black border border-neutral-200 rounded-xl font-semibold text-lg hover:bg-neutral-50 transition-all hover:-translate-y-1 shadow-sm hover:shadow-md flex items-center justify-center gap-2"
           >
             Contact Us
-          </a>
-          <a
-            href="#work"
-            className="w-full sm:w-[200px] h-[56px] bg-white text-neutral-900 border border-neutral-200 rounded-xl font-semibold text-lg hover:bg-neutral-50 transition-all hover:-translate-y-1 shadow-sm hover:shadow-md flex items-center justify-center gap-2 group"
-          >
-            Explore Our Work{" "}
-            <ArrowRight
-              size={18}
-              className="group-hover:translate-x-1 transition-transform"
-            />
           </a>
         </div>
 

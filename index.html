@@ -64,7 +64,7 @@
     <style>
       body {
         font-family: "Inter", sans-serif;
-        background-color: #ffffff;
+        background-color: #FDFBF7;
         color: #0a0a0a;
         overflow-x: hidden;
       }
@@ -116,6 +116,19 @@
           transform: rotate(360deg);
         }
       }
+
+      .animate-shake {
+        display: inline-block;
+      }
+      .group:hover .animate-shake {
+        animation: shake 0.5s ease-in-out infinite;
+      }
+
+      @keyframes shake {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(-10deg); }
+        75% { transform: rotate(10deg); }
+      }
     </style>
     <script type="importmap">
       {
@@ -133,7 +146,7 @@
     <link
       rel="icon"
       type="image/png"
-      href="/assets/services/shadow-forge-logo.png"
+      href="/shadow-forge-logo.png"
     />
   </head>
   <body>

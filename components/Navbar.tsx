@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 import gsap from "gsap";
 
 const Navbar: React.FC = () => {
@@ -101,6 +101,7 @@ const Navbar: React.FC = () => {
   }, [mobileMenuOpen]);
 
   const navLinks = [
+    { name: "About", href: "#about" },
     { name: "Work", href: "#work" },
     { name: "Services", href: "#services" },
     { name: "Process", href: "#process" },
@@ -135,15 +136,6 @@ const Navbar: React.FC = () => {
             href="#hero"
             className="flex items-center gap-2 group relative z-50"
           >
-            <div
-              className={`w-10 h-10 flex items-center justify-center font-bold text-lg rounded-lg border-2 transition-all duration-300 ${
-                mobileMenuOpen
-                  ? "border-white text-white"
-                  : "border-neutral-900 text-neutral-900"
-              }`}
-            >
-              SF
-            </div>
             <span
               className={`font-bold text-xl tracking-tight transition-colors duration-300 ${
                 mobileMenuOpen ? "text-white" : "text-neutral-900"
@@ -170,19 +162,15 @@ const Navbar: React.FC = () => {
           {/* CTA & Hamburger */}
           <div className="flex items-center gap-4">
             <a
-              href="#contact"
-              onClick={handleContactClick}
+              href="tel:+919025946625"
               className={`hidden md:flex px-6 py-2.5 text-sm font-semibold rounded-full transition-all active:scale-95 shadow-lg hover:shadow-xl hover:-translate-y-0.5 items-center gap-2 ${
                 mobileMenuOpen
                   ? "bg-white text-black hover:bg-neutral-200"
                   : "bg-black text-white hover:bg-neutral-800"
               }`}
             >
-              Book a Demo Call
-              <ArrowRight
-                size={16}
-                className="transition-transform group-hover:translate-x-1"
-              />
+              <Phone size={16} />
+              Talk to Expert
             </a>
 
             {/* Custom Hamburger */}
@@ -243,12 +231,11 @@ const Navbar: React.FC = () => {
               </a>
             ))}
             <a
-              href="#contact"
+              href="tel:+919025946625"
               ref={addToLinksRef}
-              onClick={handleContactClick}
-              className="text-2xl font-medium text-neutral-400 mt-8 flex items-center gap-4 opacity-0 translate-y-12 hover:text-white transition-colors"
+              className="text-2xl font-bold text-white mt-8 flex items-center gap-3 opacity-0 translate-y-12 hover:text-neutral-400 transition-colors"
             >
-              Book a Demo Call <ArrowRight size={24} />
+              Talk to Expert <Phone size={24} />
             </a>
           </div>
         </div>

@@ -38,18 +38,18 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-neutral-900 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+        {/* Bottom Bar - Extended right padding added to ensure right-floating elements like chat widget do not overlap the legal links */}
+        <div className="border-t border-neutral-900 pt-10 flex flex-col md:flex-row justify-between items-center gap-6 pr-8 md:pr-40">
           <p className="text-neutral-500 text-sm font-medium">
             © 2026 Shadow Forge AI Agency. All rights reserved.
           </p>
 
           {/* Social / Legal (Optional addition for balance) */}
           <div className="flex gap-8 text-sm text-neutral-500">
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="#privacy" className="hover:text-white transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="#terms" className="hover:text-white transition-colors">
               Terms of Service
             </a>
           </div>

@@ -266,51 +266,6 @@ const Contact: React.FC = () => {
       )}
 
       <div className="max-w-5xl mx-auto px-6">
-        {/* AI Assistant Banner */}
-        <div className="mb-16 p-8 rounded-3xl bg-neutral-900 text-white relative overflow-hidden shadow-2xl">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="bg-white/20 p-2 rounded-lg backdrop-blur-md">
-                  <Sparkles size={20} className="text-purple-300" />
-                </div>
-                <span className="text-sm font-bold tracking-wider uppercase text-purple-200">
-                  New AI Assistant
-                </span>
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-3">
-                Chat with Jessica
-              </h3>
-              <p className="text-neutral-300 leading-relaxed max-w-xl mb-6">
-                Make a call with Jessica to discuss your project, get instant
-                answers about our <strong>pricing</strong> and{" "}
-                <strong>services</strong>, and discover how we can help bring
-                your vision to life.
-              </p>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  const widget = document.querySelector("elevenlabs-convai");
-                  const startButton = widget?.shadowRoot?.querySelector(
-                    'button[aria-label="Start a call"]'
-                  ) as HTMLElement;
-                  if (startButton) startButton.click();
-                }}
-                className="bg-white text-black px-6 py-3 rounded-full font-bold flex items-center gap-2 hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.3)]"
-              >
-                <Sparkles size={18} className="fill-black" />
-                Start Conversation
-              </button>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"></div>
-              <span className="text-xs font-mono text-green-400">
-                ONLINE NOW
-              </span>
-            </div>
-          </div>
-        </div>
 
         <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-neutral-900 mb-16 leading-tight">
           Hey! We are <span className="text-neutral-300">ready</span> <br />

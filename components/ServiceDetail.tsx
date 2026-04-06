@@ -38,7 +38,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
   }, []);
 
   return (
-    <div ref={containerRef} className="bg-white min-h-screen">
+    <div ref={containerRef} className="min-h-screen">
       {/* Navigation / Header */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-neutral-100 py-4 px-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -90,7 +90,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
             </div>
           </div>
 
-          <div className="relative rounded-3xl overflow-hidden aspect-square md:aspect-[4/3] shadow-2xl">
+          <div className="relative rounded-3xl overflow-hidden aspect-square md:aspect-[4/3] shadow-2xl bg-cover">
             <img
               ref={imgRef}
               src={service.fullContent.heroImage}

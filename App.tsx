@@ -12,7 +12,11 @@ import FAQ from "./components/FAQ";
 import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import About from "./components/About";
+import ServicesPage from "./components/ServicesPage";
 import ServiceDetail from "./components/ServiceDetail";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+import TermsConditions from "./components/TermsConditions";
 import ScrollToTop from "./components/ScrollToTop";
 import ChatAgent from "./components/ChatAgent";
 
@@ -46,6 +50,49 @@ const App: React.FC = () => {
     null,
   );
   const [footerHeight, setFooterHeight] = useState(0);
+  const [currentRoute, setCurrentRoute] = useState<"home" | "about" | "services" | "privacy" | "terms">("home");
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash === "#about") {
+        setCurrentRoute("about");
+        setTimeout(() => window.scrollTo(0, 0), 10);
+      } else if (hash === "#services") {
+        setCurrentRoute("services");
+        setTimeout(() => window.scrollTo(0, 0), 10);
+      } else if (hash === "#privacy") {
+        setCurrentRoute("privacy");
+        setTimeout(() => window.scrollTo(0, 0), 10);
+      } else if (hash === "#terms") {
+        setCurrentRoute("terms");
+        setTimeout(() => window.scrollTo(0, 0), 10);
+      } else {
+        setCurrentRoute("home");
+        if (hash && hash !== "#hero" && hash !== "#" && hash !== "#about" && hash !== "#services" && hash !== "#privacy" && hash !== "#terms") {
+          setTimeout(() => {
+            document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+          }, 100);
+        } else {
+          setTimeout(() => window.scrollTo(0, 0), 10);
+        }
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    // Initial check without forcing scroll if not needed
+    if (window.location.hash === "#about") {
+      setCurrentRoute("about");
+    } else if (window.location.hash === "#services") {
+      setCurrentRoute("services");
+    } else if (window.location.hash === "#privacy") {
+      setCurrentRoute("privacy");
+    } else if (window.location.hash === "#terms") {
+      setCurrentRoute("terms");
+    }
+
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
 
   useEffect(() => {
     const updateFooterHeight = () => {
@@ -86,21 +133,32 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="w-full min-h-screen text-neutral-900 selection:bg-neutral-900 selection:text-white relative">
+    <div className="w-full min-h-screen text-neutral-900 selection:bg-neutral-900 selection:text-white relative bg-[#FDFBF7]">
       <div
-        className="relative z-10 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-b-[2rem] md:rounded-b-[4rem]"
+        className="relative z-10 bg-[#FDFBF7] shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-b-[2rem] md:rounded-b-[4rem]"
         style={{ marginBottom: `${footerHeight}px` }}
       >
         <Navbar />
         <main>
-          <Hero />
-          <SocialProof />
-          <Services onServiceClick={setSelectedService} />
-          <Process />
-          <FeaturedWork />
-          <ValueProposition />
-          <FAQ />
-          <Testimonials />
+          {currentRoute === "about" ? (
+            <About />
+          ) : currentRoute === "services" ? (
+            <ServicesPage onServiceClick={setSelectedService} />
+          ) : currentRoute === "privacy" ? (
+            <PrivacyPolicy />
+          ) : currentRoute === "terms" ? (
+            <TermsConditions />
+          ) : (
+            <>
+              <Hero />
+              <SocialProof />
+              <Process />
+              <FeaturedWork />
+              <ValueProposition />
+              <FAQ />
+              <Testimonials />
+            </>
+          )}
           <Contact />
         </main>
       </div>

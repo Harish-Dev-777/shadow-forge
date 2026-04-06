@@ -22,7 +22,7 @@ const SocialProof: React.FC = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-24 bg-white border-t border-neutral-100">
+    <section ref={containerRef} className="py-24 border-t border-neutral-100">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 mb-6 max-w-4xl mx-auto leading-tight">

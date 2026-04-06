@@ -4,70 +4,119 @@ import { ArrowUpRight, ArrowLeft, ArrowRight } from "lucide-react";
 const projects = [
   {
     id: "01",
-    title: "I Build This",
-    category: "SaaS & Construction Tech",
+    title: "iPhone 17 Pro Max",
+    category: "Product & Cinematic UI",
     description:
-      "A comprehensive platform streamlining construction project management and contractor discovery.",
-    result: "🚀 Streamlined workflows by 3x",
-    tags: ["SaaS", "Next.js", "Construction", "Platform"],
-    image: "/assets/projects/DevlopersBlog.png",
-    link: "https://i-buld-this.vercel.app/",
+      "High-end product landing page with immersive scroll animations and cinematic transitions.",
+    result: "✨ Award-winning immersive experience",
+    tags: ["Next.js", "Tailwind CSS", "GSAP"],
+    image: "/assets/Projects/Iphone-17-pro-max.png",
+    link: "https://iphone-17-pro-max-ruby.vercel.app/",
   },
   {
     id: "02",
-    title: "Smile Care Clinic",
-    category: "Healthcare & Booking",
+    title: "Aether Weather",
+    category: "Utility & Data Vis",
     description:
-      "A modern, trustworthy dental clinic website with integrated appointment booking and service showcase.",
-    result: "📅 Increased bookings by 150%",
-    tags: ["Healthcare", "Booking System", "UX Design"],
-    image: "/assets/projects/SmileCareDentalClinic.png",
-    link: "https://smile-care-clinic.vercel.app/",
+      "Clean modern weather app with dynamic API integration and responsive UI.",
+    result: "☁️ 99.9% API uptime reliability",
+    tags: ["React", "Weather API", "CSS"],
+    image: "/assets/Projects/aether_Weather.png",
+    link: "https://aether-weather-six.vercel.app/",
   },
   {
     id: "03",
-    title: "Spice Soul",
-    category: "E-commerce & Culinary",
+    title: "Agamudaiyar",
+    category: "Community & Culture",
     description:
-      "A vibrant, appetizing e-commerce experience for a premium spice brand, focused on sensory design.",
-    result: "🌶️ Boosted sales conversion by 40%",
-    tags: ["E-commerce", "Branding", "Sensory Design"],
-    image: "/assets/projects/Spice-and-Soul.png",
-    link: "https://spice-soul.vercel.app/",
+      "Structured community website with smooth animations and clean layout design.",
+    result: "🤝 Connected 10,000+ members",
+    tags: ["React", "Tailwind CSS", "GSAP"],
+    image: "/assets/Projects/agamudaiyar.png",
+    link: "https://agamudaiyar.vercel.app/",
   },
   {
     id: "04",
-    title: "Harish Portfolio",
-    category: "Personal Brand & Portfolio",
+    title: "Shadow Forge",
+    category: "Agency & Portfolio",
     description:
-      "A high-performance personal portfolio showcasing creative development skills and project history.",
-    result: "✨ Award-winning design aesthetics",
-    tags: ["Portfolio", "Creative Dev", "3D Elements"],
-    image: "/assets/projects/Portfolio.png",
-    link: "https://harish-portfolio-tawny.vercel.app/",
+      "Premium agency website built with modern UI, smooth animations, and bold typography.",
+    result: "🏆 Premium client conversion",
+    tags: ["Next.js", "Tailwind", "Framer Motion", "GSAP", "Resend", "Convex"],
+    image: "/assets/Projects/shadowForge.png",
+    link: "https://shadow-forge-uwyd.vercel.app/",
   },
   {
     id: "05",
+    title: "Winter Max",
+    category: "Landing Page & Typography",
+    description:
+      "Visually rich landing page focused on strong typography and layered UI design.",
+    result: "❄️ 300% Engagement increase",
+    tags: ["React", "GSAP", "CSS", "Resend"],
+    image: "/assets/Projects/winter_max.png",
+    link: "https://winter-max.vercel.app/",
+  },
+  {
+    id: "06",
     title: "Trendly",
     category: "E-commerce & AI",
     description:
-      "A curated, premium e-commerce experience powered by intelligence to elevate lifestyle shopping.",
-    result: "📈 98% Happy Customers",
-    tags: ["E-commerce", "AI", "Premium"],
-    image: "/assets/projects/Trendly.png",
+      "Futuristic e-commerce web application with advanced UI interactions and live cart/wishlist.",
+    result: "📈 Increased sales by 200%",
+    tags: ["Next.js", "Convex", "Framer Motion", "Clerk"],
+    image: "/assets/Projects/trendly.png",
     link: "https://trendly-ecommerce-one.vercel.app/",
+  },
+  {
+    id: "07",
+    title: "Smile Care Clinic",
+    category: "Healthcare & Booking",
+    description:
+      "Professional clinic website with clean UI and user-friendly appointment navigation.",
+    result: "📅 Increased bookings by 150%",
+    tags: ["React", "Tailwind CSS"],
+    image: "/assets/Projects/smile_care_clinic.png",
+    link: "https://smile-care-clinic.vercel.app/",
+  },
+  {
+    id: "08",
+    title: "Spice & Soul",
+    category: "E-commerce & Culinary",
+    description:
+      "Premium restaurant website with elegant animations and modern UI to showcase culinary excellence.",
+    result: "🌶️ Boosted sales conversion by 40%",
+    tags: ["React", "Tailwind", "GSAP"],
+    image: "/assets/Projects/spice_soul.png",
+    link: "https://spice-soul.vercel.app/",
   },
 ];
 
 const FeaturedWork: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [startIndex, setStartIndex] = useState(0);
 
   const handlePrev = () => {
-    setActiveIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+    if (startIndex <= 0) {
+      const nextStart = projects.length - 5;
+      setStartIndex(nextStart);
+      setActiveIndex(projects.length - 1);
+    } else {
+      const nextStart = startIndex - 1;
+      setStartIndex(nextStart);
+      setActiveIndex((curr) => Math.min(curr, nextStart + 4));
+    }
   };
 
   const handleNext = () => {
-    setActiveIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
+    if (startIndex >= projects.length - 5) {
+      setStartIndex(0);
+      setActiveIndex(0);
+    } else {
+      const nextStart = startIndex + 1;
+      setStartIndex(nextStart);
+      setActiveIndex((curr) => Math.max(curr, nextStart));
+    }
   };
 
   return (
@@ -108,15 +157,25 @@ const FeaturedWork: React.FC = () => {
 
       {/* Projects Accordion */}
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-row gap-4 h-[600px]">
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              onClick={() => setActiveIndex(index)}
-              onMouseEnter={() => setActiveIndex(index)}
-              className={`relative overflow-hidden rounded-3xl transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer group h-full
-                                ${index === activeIndex ? "flex flex-[3]" : "hidden md:flex md:flex-[0.5] bg-neutral-900 border border-white/5"}
-                            `}
+        <div className="flex flex-row h-[60vh] min-h-[450px] max-h-[700px] w-full">
+          {projects.map((project, index) => {
+            const isVisible = index >= startIndex && index < startIndex + 5;
+            const isFirstVisible = index === startIndex;
+
+            return (
+              <div
+                key={project.id}
+                onClick={() => setActiveIndex(index)}
+                onMouseEnter={() => setActiveIndex(index)}
+                className={`relative overflow-hidden rounded-3xl transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer group h-full
+                    ${isVisible 
+                        ? (index === activeIndex 
+                            ? "flex flex-[3] opacity-100" 
+                            : "hidden md:flex md:flex-[0.5] bg-neutral-900 border border-white/5 opacity-100") 
+                        : "flex-none w-0 opacity-0 pointer-events-none p-0 m-0 border-0"
+                    }
+                    ${isVisible && !isFirstVisible ? "ml-4" : "ml-0"}
+                `}
             >
               {/* Background Image (Active Only) */}
               <div
@@ -195,7 +254,8 @@ const FeaturedWork: React.FC = () => {
 
               {/* Inactive State: Horizontal Row (Mobile) - REMOVED */}
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

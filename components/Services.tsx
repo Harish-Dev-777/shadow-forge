@@ -18,7 +18,7 @@ interface ServicesProps {
   onServiceClick: (service: ServiceData) => void;
 }
 
-const servicesData: ServiceData[] = [
+export const servicesData: ServiceData[] = [
   {
     id: "ai-web-design",
     title: "AI Web Design",
@@ -49,8 +49,7 @@ const servicesData: ServiceData[] = [
     iconBg: "bg-rose-100",
     iconType: "layout",
     fullContent: {
-      heroImage:
-        "https://images.unsplash.com/photo-1586717791821-3f44a5638d0f?q=80&w=2000&auto=format&fit=crop",
+      heroImage: "/assets/services/ui-ux.png",
       longDescription:
         "Beauty means nothing without function. We analyze user behavior to create intuitive paths that reduce friction and maximize conversion rates. Every pixel serves a purpose.",
       features: [
@@ -265,7 +264,7 @@ const Services: React.FC<ServicesProps> = ({ onServiceClick }) => {
     <section
       ref={containerRef}
       id="services"
-      className="py-24 bg-white overflow-hidden relative z-10"
+      className="py-24 overflow-hidden relative z-10"
     >
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
