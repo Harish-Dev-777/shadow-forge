@@ -17,25 +17,16 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://shadow-forge-uwyd.vercel.app/" />
-    <meta
-      property="og:title"
-      content="Shadow Forge - Leading AI Web Design & Development Agency"
-    />
-    <meta
-      property="og:description"
-      content="Elevate your digital presence with Shadow Forge. We specialize in AI-powered web design, premium UI/UX, and high-performance development for businesses in India and beyond."
-    />
-    <meta
-      property="og:image"
-      content="https://shadow-forge-uwyd.vercel.app/assets/shadow-forge-logo.png"
-    />
+    <meta property="og:title" content="Shadow Forge - Leading AI Web Design & Development Agency" />
+    <meta property="og:description" content="Elevate your digital presence with Shadow Forge. We specialize in AI-powered web design, premium UI/UX, and high-performance development for businesses in India and beyond." />
+    <meta property="og:image" content="https://shadow-forge-uwyd.vercel.app/assets/shadow-forge-logo.png" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://shadowforge.dev/" />
+    <meta property="twitter:url" content="https://shadow-forge-uwyd.vercel.app/" />
     <meta property="twitter:title" content="Shadow Forge - Leading AI Web Design & Development Agency" />
     <meta property="twitter:description" content="AI-powered web design and development that scales. Get a high-converting website today." />
-    <meta property="twitter:image" content="https://shadowforge.dev/assets/shadow-forge-og.png" />
+    <meta property="twitter:image" content="https://shadow-forge-uwyd.vercel.app/assets/shadow-forge-logo.png" />
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -70,7 +61,7 @@
           "Wednesday",
           "Thursday",
           "Friday",
-          "Saturday",
+          "Saturday"
         ],
         "opens": "09:00",
         "closes": "18:00"
@@ -81,100 +72,29 @@
     <!-- Preload Critical Assets -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://esm.sh" />
-    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Async Font Loading (non-render-blocking) -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;600;800&display=swap"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;600;800&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
-    <style>
-      body {
-        font-family: "Inter", sans-serif;
-        background-color: #FDFBF7;
-        color: #0a0a0a;
-        overflow-x: hidden;
-      }
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-family: "Manrope", sans-serif;
-      }
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;600;800&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
-      /* Globally hide scrollbar */
-      ::-webkit-scrollbar {
-        display: none;
-      }
-
-      /* Hide scrollbar for IE, Edge and Firefox */
-      html {
-        -ms-overflow-style: none; /* IE and Edge */
-        scrollbar-width: none; /* Firefox */
-        scroll-behavior: smooth;
-        scroll-padding-top: 100px; /* Offset for fixed navbar */
-      }
-
-      /* Utility class (kept for compatibility) */
-      .no-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .no-scrollbar {
-        -ms-overflow-style: none; /* IE and Edge */
-        scrollbar-width: none; /* Firefox */
-      }
-
-      ::selection {
-        background-color: #000;
-        color: #fff;
-      }
-
-      .animate-spin-slow {
-        animation: spin 3s linear infinite;
-      }
-
-      @keyframes spin {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      .animate-shake {
-        display: inline-block;
-      }
-      .group:hover .animate-shake {
-        animation: shake 0.5s ease-in-out infinite;
-      }
-
-      @keyframes shake {
-        0%, 100% { transform: rotate(0deg); }
-        25% { transform: rotate(-10deg); }
-        75% { transform: rotate(10deg); }
-      }
-    </style>
-    <script type="importmap">
-      {
-        "imports": {
-          "react/": "https://esm.sh/react@^19.2.3/",
-          "react": "https://esm.sh/react@^19.2.3",
-          "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-          "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-          "gsap/": "https://esm.sh/gsap@^3.14.2/",
-          "gsap": "https://esm.sh/gsap@^3.14.2"
-        }
-      }
-    </script>
     <!-- Favicon -->
-    <link
-      rel="icon"
-      type="image/png"
-      href="/shadow-forge-logo.png"
-    />
+    <link rel="icon" type="image/png" href="/shadow-forge-logo.png" />
   </head>
   <body>
     <div id="root"></div>

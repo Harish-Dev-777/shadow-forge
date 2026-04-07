@@ -1,13 +1,21 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  isSticky?: boolean;
+}
+
+const Footer: React.FC<FooterProps> = ({ isSticky = true }) => {
   const links = ["Services", "Work", "Process", "About", "Contact"];
 
   return (
     <footer
-      id="sticky-footer"
-      className="fixed bottom-0 left-0 w-full -z-10 bg-neutral-950 text-white pt-24 pb-12 px-6"
+      id={isSticky ? "sticky-footer" : undefined}
+      className={`${
+        isSticky
+          ? "fixed bottom-0 left-0 w-full -z-10"
+          : "relative z-10 bg-neutral-950 mt-auto"
+      } bg-neutral-950 text-white pt-24 pb-12 px-6`}
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between md:items-start gap-16 mb-24">

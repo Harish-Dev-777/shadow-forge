@@ -1,24 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense, lazy } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Eagerly loaded (above-the-fold)
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import SocialProof from "./components/SocialProof";
-import Services from "./components/Services";
-import Process from "./components/Process";
-import FeaturedWork from "./components/FeaturedWork";
-import ValueProposition from "./components/ValueProposition";
-import FAQ from "./components/FAQ";
-import Testimonials from "./components/Testimonials";
-import Contact from "./components/Contact";
+
 import Footer from "./components/Footer";
-import About from "./components/About";
-import ServicesPage from "./components/ServicesPage";
-import ServiceDetail from "./components/ServiceDetail";
-import PrivacyPolicy from "./components/PrivacyPolicy";
-import TermsConditions from "./components/TermsConditions";
-import ScrollToTop from "./components/ScrollToTop";
-import ChatAgent from "./components/ChatAgent";
+// Lazy loaded (below-the-fold) - reduces initial bundle size
+const Services = lazy(() => import("./components/Services"));
+const Process = lazy(() => import("./components/Process"));
+const FeaturedWork = lazy(() => import("./components/FeaturedWork"));
+const ValueProposition = lazy(() => import("./components/ValueProposition"));
+const FAQ = lazy(() => import("./components/FAQ"));
+const Testimonials = lazy(() => import("./components/Testimonials"));
+const Contact = lazy(() => import("./components/Contact"));
+const About = lazy(() => import("./components/About"));
+const ServicesPage = lazy(() => import("./components/ServicesPage"));
+const ServiceDetail = lazy(() => import("./components/ServiceDetail"));
+const PrivacyPolicy = lazy(() => import("./components/PrivacyPolicy"));
+const TermsConditions = lazy(() => import("./components/TermsConditions"));
+const ScrollToTop = lazy(() => import("./components/ScrollToTop"));
+const ChatAgent = lazy(() => import("./components/ChatAgent"));
 
 // Register GSAP Plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -108,13 +112,13 @@ const App: React.FC = () => {
     // Set body background to match footer for seamless reveal
     // We use the exact color of the footer (neutral-950 which is #0a0a0a)
     const originalBodyBg = document.body.style.backgroundColor;
-    document.body.style.backgroundColor = "#0a0a0a";
+    document.body.style.backgroundColor = selectedService ? "#FDFBF7" : "#0a0a0a";
 
     return () => {
       window.removeEventListener("resize", updateFooterHeight);
       document.body.style.backgroundColor = originalBodyBg;
     };
-  }, []);
+  }, [selectedService]); // Re-run when service selection changes
 
   // Simple client-side routing
   if (selectedService) {
@@ -140,31 +144,35 @@ const App: React.FC = () => {
       >
         <Navbar />
         <main>
-          {currentRoute === "about" ? (
-            <About />
-          ) : currentRoute === "services" ? (
-            <ServicesPage onServiceClick={setSelectedService} />
-          ) : currentRoute === "privacy" ? (
-            <PrivacyPolicy />
-          ) : currentRoute === "terms" ? (
-            <TermsConditions />
-          ) : (
-            <>
-              <Hero />
-              <SocialProof />
-              <Process />
-              <FeaturedWork />
-              <ValueProposition />
-              <FAQ />
-              <Testimonials />
-            </>
-          )}
-          <Contact />
+          <Suspense fallback={null}>
+            {currentRoute === "about" ? (
+              <About />
+            ) : currentRoute === "services" ? (
+              <ServicesPage onServiceClick={setSelectedService} />
+            ) : currentRoute === "privacy" ? (
+              <PrivacyPolicy />
+            ) : currentRoute === "terms" ? (
+              <TermsConditions />
+            ) : (
+              <>
+                <Hero />
+                <SocialProof />
+                <Process />
+                <FeaturedWork />
+                <ValueProposition />
+                <FAQ />
+                <Testimonials />
+              </>
+            )}
+            <Contact />
+          </Suspense>
         </main>
       </div>
       <Footer />
-      <ChatAgent />
-      <ScrollToTop />
+      <Suspense fallback={null}>
+        <ChatAgent />
+        <ScrollToTop />
+      </Suspense>
     </div>
   );
 };

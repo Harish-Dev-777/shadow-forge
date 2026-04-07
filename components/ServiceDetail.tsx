@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { ServiceData } from "../App";
@@ -38,7 +38,11 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
   }, []);
 
   return (
-    <div ref={containerRef} className="min-h-screen">
+    <div
+      ref={containerRef}
+      className="flex flex-col min-h-screen relative z-10"
+      style={{ backgroundColor: "#FDFBF7" }}
+    >
       {/* Navigation / Header */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-neutral-100 py-4 px-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -121,7 +125,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
         </div>
       </section>
 
-      <Footer />
+      <Footer isSticky={false} />
     </div>
   );
 };

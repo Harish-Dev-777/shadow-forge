@@ -10,7 +10,7 @@ const Hero: React.FC = () => {
   const marqueeTrackRef = useRef<HTMLDivElement>(null);
   const supportRef = useRef<HTMLParagraphElement>(null);
 
-  // Using reliable vector sources
+  // All logos self-hosted for performance (no external HTTP requests)
   const logoUrls = [
     "/assets/icons/convex.png",
     "/assets/icons/gemini.png",
@@ -19,21 +19,21 @@ const Hero: React.FC = () => {
     "/assets/icons/supabase.png",
     "/assets/icons/notion.png",
     "/assets/icons/shadecn.png",
-    "https://www.vectorlogo.zone/logos/w3_html5/w3_html5-icon.svg",
-    "https://www.vectorlogo.zone/logos/w3_css/w3_css-icon.svg",
-    "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
-    "https://www.vectorlogo.zone/logos/javascript/javascript-icon.svg",
-    "https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-icon.svg",
-    "https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg",
-    "https://www.vectorlogo.zone/logos/nextjs/nextjs-icon.svg",
-    "https://www.vectorlogo.zone/logos/java/java-icon.svg",
-    "https://www.vectorlogo.zone/logos/springio/springio-icon.svg",
-    "https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg",
-    "https://www.vectorlogo.zone/logos/expressjs/expressjs-icon.svg",
+    "/assets/icons/html5.svg",
+    "/assets/icons/css3.svg",
+    "/assets/icons/tailwindcss.svg",
+    "/assets/icons/javascript.svg",
+    "/assets/icons/typescript.svg",
+    "/assets/icons/react.svg",
+    "/assets/icons/nextjs.svg",
+    "/assets/icons/java.svg",
+    "/assets/icons/spring.svg",
+    "/assets/icons/nodejs.svg",
+    "/assets/icons/expressjs.svg",
     "/assets/icons/nestjs.png",
-    "https://www.vectorlogo.zone/logos/mongodb/mongodb-icon.svg",
+    "/assets/icons/mongodb.svg",
     "/assets/icons/postgresql.png",
-    "https://www.vectorlogo.zone/logos/figma/figma-icon.svg",
+    "/assets/icons/figma.svg",
   ];
 
   // 4 sets to ensure it covers wide screens and loops seamlessly with xPercent: -25
