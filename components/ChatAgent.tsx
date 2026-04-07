@@ -295,33 +295,42 @@ const ChatAgent: React.FC = () => {
 
   const submitBooking = async (finalData: LeadData) => {
     addAgentMessage("Perfect. I'm generating your request ticket...");
+    setState("SUBMITTING");
+    
     try {
-      await sendContactForm({
-        name: finalData.name,
-        email: finalData.email,
-        phone: finalData.phone,
-        service: finalData.service,
-        details: finalData.details,
-        budget: finalData.budget,
-        businessName: finalData.business_name,
-        timeline: finalData.timeline,
-      });
+      // Clean and normalize data before sending
+      const payload = {
+        name: finalData.name.trim(),
+        email: finalData.email.trim().toLowerCase(),
+        phone: finalData.phone.trim(),
+        service: finalData.service.trim(),
+        details: finalData.details.trim(),
+        budget: finalData.budget.trim(),
+        businessName: finalData.business_name.trim() === "Personal" ? "" : finalData.business_name.trim(),
+        timeline: finalData.timeline.trim(),
+      };
+
+      await sendContactForm(payload);
+      
+      setState("IDLE");
       addAgentMessage(
-        "Finally your inquiry has been sent, thank you like that and have a great day.",
+        "Success! Your inquiry has been transmitted. Our team will review the details and get back to you shortly at " + payload.email + ".",
       );
       
-      // Auto close the chat widget after a brief delay so the user has time to read the message
+      // Auto close the chat widget after a delay
       setTimeout(() => {
         setIsOpen(false);
         // Reset the data for next time
         setData({
           name: "", business_name: "", service: "", budget: "", timeline: "", phone: "", email: "", details: ""
         });
-      }, 5000);
-    } catch (e) {
-      console.error(e);
+        setMessages([]); // Clear chat history for next time
+      }, 6000);
+    } catch (e: any) {
+      console.error("Chat Submission Error:", e);
+      setState("IDLE");
       addAgentMessage(
-        "I apologize, but I couldn't transmit the data. Please try the main contact form below.",
+        "I encountered a technical hiccup while sending your request. Don't worry, I've logged the error. In the meantime, please try our direct contact form or email us at harishmkdev@gmail.com.",
       );
     }
   };

@@ -60,14 +60,16 @@ export const sendContactForm = mutation({
       timeline: args.timeline,
     });
 
-    // Send email
+    console.log(`Lead saved for ${args.name} (${args.email})`);
 
-    await resend.sendEmail(ctx, {
-      from: "Shadow Forge Contact <onboarding@resend.dev>",
-      to: "harishmkdev@gmail.com",
-      replyTo: [args.email],
-      subject: `🚀 New Lead: ${args.name} - ${args.service}`,
-      text: `
+    // Send email with error handling
+    try {
+      await resend.sendEmail(ctx, {
+        from: "Shadow Forge Contact <onboarding@resend.dev>",
+        to: "harishmkdev@gmail.com",
+        replyTo: [args.email],
+        subject: `🚀 New Lead: ${args.name} - ${args.service}`,
+        text: `
 New Project Inquiry from Shadow Forge
 
 Name: ${args.name}
@@ -85,7 +87,7 @@ ${args.details}
 This inquiry was submitted via Shadow Forge contact form.
 Reply directly to this email to contact ${args.name}.
       `,
-      html: `
+        html: `
         <!DOCTYPE html>
         <html>
         <head>
@@ -245,6 +247,12 @@ Reply directly to this email to contact ${args.name}.
         </body>
         </html>
       `,
-    });
+      });
+      console.log(`Email notification sent for ${args.name}`);
+    } catch (emailError) {
+      // We don't throw here so database changes are committed even if email fails
+      console.error("Resend Email Error:", emailError);
+      // You might want to flag this in the database for retry
+    }
   },
 });
