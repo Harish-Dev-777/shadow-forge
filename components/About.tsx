@@ -29,17 +29,17 @@ const About: React.FC = () => {
         {/* Header */}
         <div className="mb-20 text-center">
           <h1 className="about-hero-text text-5xl md:text-7xl font-bold tracking-tight text-neutral-900 mb-6">
-            About Shadow Forge
+            Leading AI Web Design Agency in India
           </h1>
           <p className="about-hero-text text-xl md:text-2xl text-neutral-600 leading-relaxed font-light max-w-3xl mx-auto">
-            At Shadow Forge, we don’t just build websites, we craft digital experiences that leave a lasting impression.
+            Shadow Forge is a premier digital agency specializing in <span className="font-medium text-black">AI-powered web development</span>, premium UI/UX, and high-conversion landing pages for global brands.
           </p>
         </div>
 
         {/* Intro */}
         <div className="about-section text-neutral-600 space-y-6 text-lg mb-24 max-w-3xl mx-auto">
           <p>
-            Founded with a passion for design and a focus on results, Shadow Forge helps businesses transform their ideas into powerful online presences. Whether you're a startup looking to make your mark or an established brand ready to evolve, we blend creativity with strategy to deliver websites that are not only visually striking but also built to perform.
+            Based in India, Shadow Forge helps businesses worldwide transform their ideas into powerful online presences. As a top-rated <span className="font-medium text-black">web design agency</span>, we combine cutting-edge AI technology with editorial-grade design to deliver websites that don't just look good—they dominate Google search results.
           </p>
         </div>
 

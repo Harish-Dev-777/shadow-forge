@@ -156,7 +156,7 @@ export const KNOWLEDGE_BASE_DATA = [
       "packages",
     ],
     answer:
-      "Our pricing is tailored to value. \n- Basic Websites: Start at $1,000\n- Custom Web Apps: Start at $5,000\n- AI Solutions: Start at $5,000\nDo you have a specific budget in mind?",
+      "Our pricing is tailored to the value we provide:\n- Starter (Landing Page): ₹4,999\n- Professional (Full Site): ₹14,999\n- Business AI (Custom AI + SEO): ₹29,999\n- Enterprise: Custom Quotes\nDo you have a specific project in mind?",
     intent: "PRICING_QUERY",
   },
   {
@@ -169,22 +169,19 @@ export const KNOWLEDGE_BASE_DATA = [
       "negotiable",
       "too much",
     ],
-    answer:
-      "We focus on premium quality and ROI. While we aren't the cheapest, we deliver the highest value. We can often tailor a scope to fit a realistic budget.",
+    answer: "A complete professional website with up to 5 pages and advanced animations starts at ₹14,999.",
     intent: "PRICING_QUERY",
   },
   {
     category: "Pricing",
     keywords: ["hourly", "rate", "hour", "pay per hour"],
-    answer:
-      "We typically work on a fixed-project basis so you know the total cost upfront. For ongoing work, our retainer starts at $100/hr.",
+    answer: "Our Business AI package starts at ₹29,999. It includes a custom AI chatbot, deep SEO, and full API integrations.",
     intent: "PRICING_QUERY",
   },
   {
     category: "Pricing",
     keywords: ["payment", "payment plan", "installments", "upfront", "deposit"],
-    answer:
-      "standard terms are 50% upfront to start, and 50% upon completion. We can discuss milestone-based payments for larger projects.",
+    answer: "Our Starter package for a high-converting landing page is just ₹4,999. It includes responsive design and basic SEO.",
     intent: "PRICING_QUERY",
   },
 

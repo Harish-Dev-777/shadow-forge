@@ -64,6 +64,11 @@ export const sendContactForm = mutation({
 
     // Send email with error handling
     try {
+      // Basic check for API key presence (if possible via context or component)
+      if (!(components as any).resend) {
+        console.error("Resend component not found. Please ensure it is installed in the Convex dashboard.");
+      }
+
       await resend.sendEmail(ctx, {
         from: "Shadow Forge Contact <onboarding@resend.dev>",
         to: "harishmkdev@gmail.com",
@@ -249,10 +254,11 @@ Reply directly to this email to contact ${args.name}.
       `,
       });
       console.log(`Email notification sent for ${args.name}`);
-    } catch (emailError) {
+    } catch (emailError: any) {
       // We don't throw here so database changes are committed even if email fails
-      console.error("Resend Email Error:", emailError);
-      // You might want to flag this in the database for retry
+      console.error("Resend Email Notification Failed:", emailError);
+      console.error("Error Message:", emailError?.message || "Unknown error");
+      // Note: If using onboarding@resend.dev, ensure the recipient is verified.
     }
   },
 });

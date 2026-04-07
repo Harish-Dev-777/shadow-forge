@@ -298,18 +298,25 @@ const ChatAgent: React.FC = () => {
     setState("SUBMITTING");
     
     try {
-      // Clean and normalize data before sending
-      const payload = {
+      // Clean and normalize data before sending - ensuring optional fields are omitted if empty
+      const payload: any = {
         name: finalData.name.trim(),
         email: finalData.email.trim().toLowerCase(),
-        phone: finalData.phone.trim(),
         service: finalData.service.trim(),
         details: finalData.details.trim(),
-        budget: finalData.budget.trim(),
-        businessName: finalData.business_name.trim() === "Personal" ? "" : finalData.business_name.trim(),
-        timeline: finalData.timeline.trim(),
       };
 
+      // Only add optional fields if they have content
+      if (finalData.phone.trim()) payload.phone = finalData.phone.trim();
+      if (finalData.budget.trim()) payload.budget = finalData.budget.trim();
+      if (finalData.timeline.trim()) payload.timeline = finalData.timeline.trim();
+      
+      const bName = finalData.business_name.trim();
+      if (bName && bName.toLowerCase() !== "personal") {
+        payload.businessName = bName;
+      }
+
+      console.log("Chatbot submitting payload:", payload);
       await sendContactForm(payload);
       
       setState("IDLE");
@@ -329,8 +336,9 @@ const ChatAgent: React.FC = () => {
     } catch (e: any) {
       console.error("Chat Submission Error:", e);
       setState("IDLE");
+      const errorMsg = e?.message || "Unknown server error";
       addAgentMessage(
-        "I encountered a technical hiccup while sending your request. Don't worry, I've logged the error. In the meantime, please try our direct contact form or email us at harishmkdev@gmail.com.",
+        `I encountered a technical hiccup: "${errorMsg}". Please try our direct contact form below or email us at harishmkdev@gmail.com.`
       );
     }
   };

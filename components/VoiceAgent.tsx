@@ -54,7 +54,7 @@ const LOCAL_KB = {
   PRICING: {
     keywords: ["price", "cost", "budget", "money", "how much", "rate", "fee"],
     response:
-      "Our pricing depends on the project scope. Simple sites start lower, while complex AI solutions require more investment. Do you have a rough budget?",
+      "Our services are competitively priced for the Indian market. We have a Starter package at ₹4,999 for landing pages, a Professional package at ₹14,999 for full sites, and a Business AI package at ₹29,999 for advanced solutions. Which one interests you?",
   },
   TIMELINE: {
     keywords: [
@@ -68,7 +68,7 @@ const LOCAL_KB = {
       "duration",
     ],
     response:
-      "Timelines vary. A standard website takes about 2-4 weeks. Complex apps might take 2-3 months. When is your deadline?",
+      "Timelines vary. A standard website takes about 1-2 weeks. Complex apps might take 1-2 months. When is your deadline?",
   },
   CONTACT: {
     keywords: [
